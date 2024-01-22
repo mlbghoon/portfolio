@@ -1,0 +1,281 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+.title {
+  font-weight: 700;
+  font-size: 5vh;
+  width: 90vw;
+
+  @media (min-width: 768px) {
+    font-size: 10vh;
+    width: 80vw;
+
+  }
+
+  &__content {
+    &__message {
+      display: grid;
+      // grid-template-columns: 25vh 1fr;
+      grid-template-rows: calc(2.5vh + 10px) 2.5vh;
+      gap: 2.5vh;
+      > div {
+        display: flex;
+
+      }
+      @media (min-width: 768px) {
+        grid-template-rows: calc(5vh + 10px) 5vh;
+
+      }
+    }
+    &__indicator {
+      position: relative;
+      width: 50%;
+
+    }
+    &__level {
+      font-size: 50%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      position: relative;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+
+      &.shake{
+
+        animation: test .5s ease;
+        animation-delay: .2s;
+
+        @keyframes test {
+          100% {
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+          }
+          90% {
+            right: 20px;
+            left: 0px;
+            bottom: 20px;
+          }
+          80% {
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+          }
+          70% {
+            right: 20px;
+            left: 0px;
+            bottom: 20px;
+          }
+          60% {
+            right: 0px;
+            left: 2px;
+            bottom: 0px;
+          }
+          50% {
+            right: 20px;
+            left: 0px;
+            bottom: 20px;
+          }
+          40% {
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+          }
+          30% {
+            right: 0px;
+            left: 0px;
+            bottom: 10px;
+          }
+          20% {
+            right: 0px;
+            left: 20px;
+            bottom: 0px;
+          }
+          10% {
+            right: 20px;
+            left: 0px;
+            bottom: 10px;
+          }
+          0% {
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  @each $color-name, $color-values in $--colors-map {
+    &--theme-#{"" + $color-name} {
+      .title__span {
+        transition: color 1s ease;
+        color: map.get($color-values, "deep-dark");
+
+        &-clicked {
+          transition: color 2s ease;
+          color: map.get($color-values, "default-dark");
+        }
+
+      }
+    }
+  }
+
+  &__span-clicked {
+    animation: bounce .3s ease infinite alternate;
+
+    &:nth-child(2) { animation-delay: .1s; }
+    &:nth-child(3) { animation-delay: .2s; }
+    &:nth-child(4) { animation-delay: .3s; }
+    &:nth-child(5) { animation-delay: .4s; }
+
+    @keyframes bounce {
+      100% {
+        top: -10px;
+      }
+    }
+  }
+
+  span {
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    display: inline-block;
+
+  }
+  .indicator{
+    font-size: 3vh;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+
+    @media (min-width: 768px) {
+      left: 0px;
+      top: 100%;
+    }
+
+    animation: toLeft 3s ease ;
+    @keyframes toLeft {
+      100% {
+        left: 0px;
+      }
+      90% {
+        left: 0px;
+      }
+      80% {
+        left: 30px;
+      }
+      70% {
+        left: 0px;
+      }
+      68% {
+        left: calc(18px * (1 - 0.60));
+      }
+      66% {
+        left: calc(18px * (1 - 0.36));
+      }
+      64% {
+        left: calc(18px * (1 - 0.18));
+      }
+      62% {
+        left: calc(18px * (1 - 0.06));
+      }
+      60% {
+        left: 18px;
+      }
+      58% {
+        left: calc(18px * (1 - 0.06));
+      }
+      56% {
+        left: calc(18px * (1 - 0.18));
+      }
+      54% {
+        left: calc(18px * (1 - 0.36));
+      }
+      52% {
+        left: calc(18px * (1 - 0.6));
+      }
+      50% {
+        left: 0px;
+      }
+      48% {
+        left: calc(36px * (1 - 0.60));
+      }
+      46% {
+        left: calc(36px * (1 - 0.36));
+      }
+      44% {
+        left: calc(36px * (1 - 0.18));
+      }
+      42% {
+        left: calc(36px * (1 - 0.06));
+      }
+      40% {
+        left: 36px;
+      }
+      38% {
+        left: calc(36px * (1 - 0.06));
+      }
+      36% {
+        left: calc(36px * (1 - 0.18));
+      }
+      34% {
+        left: calc(36px * (1 - 0.36));
+      }
+      32% {
+        left: calc(36px * (1 - 0.6));
+      }
+      30% {
+        left: 0px;
+      }
+      28% {
+        left: calc(60px * (1 - 0.60));
+      }
+      26% {
+        left: calc(60px * (1 - 0.36));
+      }
+      24% {
+        left: calc(60px * (1 - 0.18));
+      }
+      22% {
+        left: calc(60px * (1 - 0.06));
+      }
+      20% {
+        left: 60px;
+      }
+      18% {
+        left: calc(60px * (1 - 0.06));
+      }
+      16% {
+        left: calc(60px * (1 - 0.18));
+      }
+      14% {
+        left: calc(60px * (1 - 0.36));
+      }
+      12% {
+        left: calc(60px * (1 - 0.6));
+      }
+      10% {
+        left: 0px;
+      }
+      8% {
+        left: calc(100px * (1 - 0.60));
+      }
+      6% {
+        left: calc(100px * (1 - 0.36));
+      }
+      4% {
+        left: calc(100px * (1 - 0.18));
+      }
+      2% {
+        left: calc(100px * (1 - 0.06));
+      }
+      0% {
+        left: 100px;
+      }
+    }
+  }
+}

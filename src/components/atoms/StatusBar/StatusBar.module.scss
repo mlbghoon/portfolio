@@ -1,0 +1,30 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+$intro-gradient-start: var(--intro-gradient-start);
+$intro-gradient-end  : var(--intro-gradient-end);
+
+$infos-gradient-start: var(--infos-gradient-start);
+$infos-gradient-end  : var(--infos-gradient-end);
+
+
+.hpbar{
+  height: 3px;
+  background-size: 100% 100%;
+
+  &__intro {
+    @each $color-name, $color-values in $--colors-map {
+      &-#{"" + $color-name} {
+        background:  linear-gradient(to right, map.get($color-values, "medium-dark") $intro-gradient-start, map.get($color-values, "deep-dark") $intro-gradient-start $intro-gradient-end);
+      }
+    }
+  }
+  &__infos {
+    @each $color-name, $color-values in $--colors-map {
+      &-#{"" + $color-name} {
+        background:  linear-gradient(to right, map.get($color-values, "medium-dark") $infos-gradient-start, map.get($color-values, "deep-dark") $infos-gradient-start $infos-gradient-end);
+      }
+    }
+  }
+}
+

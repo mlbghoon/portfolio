@@ -1,0 +1,53 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+.wrapper {
+  position: relative;
+  height: 100vh;
+  overflow-y: scroll;
+
+  @each $color-name, $color-values in $--backcolors-map {
+    &-#{"" + $color-name} {
+      .about{
+        > section {
+          &:first-child{
+            background: map.get($color-values, "medium");
+            transition: background-color 1s;
+            -webkit-transition: background-color 1s;
+          }
+          &:nth-child(3){
+            background: map.get($color-values, "medium");
+            transition: background-color 1s;
+            -webkit-transition: background-color 1s;
+          }
+        }
+      }
+    }
+  }
+
+
+  .about {
+    height: 400vh;
+    box-sizing: border-box;
+
+    .about__infos{
+      .infos__contents{
+        display: grid;
+        grid-template-columns: repeat(3, 20%);
+        align-items: center;
+        justify-content: center;
+      }
+
+
+    }
+
+    .about__intro {
+      display: grid;
+      grid-template-rows: 25% 75%;
+
+
+
+    }
+  }
+
+}

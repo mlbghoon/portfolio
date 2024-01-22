@@ -1,0 +1,101 @@
+@use "sass:map";
+@import '../../../styles/DefaultValueVariable.scss';
+
+
+.frame {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+
+  @each $color-name, $color-values in $--backcolors-map {
+    &-#{"" + $color-name} {
+      .frame__header {
+        background: map.get($color-values, "default");
+        transition: background-color 1s;
+        -webkit-transition: background-color 1s;
+        .menu__overlay {
+          background: map.get($color-values, "dim");
+
+        }
+      }
+    }
+  }
+  // @media (min-width: 768px) {
+  //   display: block;
+  // }
+
+  &__header{
+    position: fixed;
+    top: 0;
+    height: 8%;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    z-index: 2;
+    .menu__overlay {
+      position: absolute;
+      top:0;
+      left: 0;
+      height: 0vh;
+      width: 0vw;
+      z-index: 3;
+      display: grid;
+      grid-template-rows: 50px 1fr;
+
+      &__close{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px;
+
+      }
+      &__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: xx-large;
+        gap: 20px;
+
+      }
+
+      transition: height 1s ease, width 1s ease;
+      &-open {
+        height: 100vh;
+        width: 100vw;
+        transition: height 1s ease, width 1s ease;
+      }
+    }
+  }
+  &__theme-control {
+    position : relative;
+    top      : 0px;
+    transform: translate(20px, 20px);
+  }
+  &__menu {
+    justify-content: flex-end;
+    padding: 20px 20px;
+    gap: 20px;
+
+    display: flex;
+    :not(:last-child) {
+      display: none;
+    }
+    :last-child{
+      display: flex;
+    }
+    @media (min-width: 768px) {
+      :not(:last-child) {
+        display: flex;
+      }
+      :last-child{
+        display: none;
+
+      }
+    }
+  }
+  &__contents{
+    height: 100%;
+    width: 100%;
+  }
+}

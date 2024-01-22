@@ -1,0 +1,30 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+$follower-location  : var(--follower-location);
+
+.follower{
+  z-index: 9;
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  position: fixed;
+  transition: transform 0.2s ease-out, clip-path 0.1s ease, height 0.5s ease, width 0.5s ease;
+  transform: $follower-location;
+
+  @each $color-name, $color-values in $--colors-map {
+    &-#{"" + $color-name} {
+      background-color:  map.get($color-values, "deep");
+
+    }
+  }
+
+
+  &-ready {
+    height: 20px;
+    width: 20px;
+  }
+
+  clip-path: polygon(0% 75%, 100% 50%, 0 25%);
+
+}

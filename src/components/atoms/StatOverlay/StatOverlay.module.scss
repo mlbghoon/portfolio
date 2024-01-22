@@ -1,0 +1,61 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+.ovelay{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 10px;
+
+  @each $color-name, $color-values in $--colors-map {
+    &-#{"" + $color-name} {
+      background-color:  map.get($color-values, "deep");
+
+      &.ovelay-levelUp {
+        animation: colorChange 2s ease infinite alternate;
+
+        @keyframes colorChange {
+          100% {
+            background-color: map.get($color-values, "deep");
+          }
+          66% {
+            background-color: white;
+          }
+          33% {
+            background-color: map.get($color-values, "deep");
+          }
+          0% {
+            background-color: white;
+          }
+        }
+      }
+
+      .stat {
+        background-color: map.get($color-values, "default-light");
+      }
+    }
+  }
+
+
+
+
+
+  &:hover {
+    height: 200px;
+    width: 200px;
+    .stat {
+      display: block;
+      height: 200px;
+      width: 200px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+  .stat {
+    display: none;
+    height: 200px;
+    width: 200px;
+  }
+}

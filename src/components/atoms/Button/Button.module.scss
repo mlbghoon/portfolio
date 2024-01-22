@@ -1,0 +1,119 @@
+@import 'styles/DefaultValueVariable.scss';
+
+
+.btn{
+  display: grid;
+  place-items: center;
+  border: 0;
+
+  border-radius: calc(1vmin * 20 / 9.45);
+
+  &:disabled{
+    background-color: $--color-gray !important;
+    cursor: not-allowed;
+
+  }
+  &--type-small{
+    height: calc(1vmin * 30 / 9.45);
+    border-radius: calc(1vmin * 30 / 9.45);
+  }
+
+  &--type-medium{
+    height: calc(1vmin * 40 / 9.45);
+    border-radius: calc(1vmin * 40 / 9.45);
+  }
+
+  &--type-big{
+    height: calc(1vmin * 45 / 9.45);
+    border-radius: calc(1vmin * 45 / 9.45);
+  }
+
+
+  @each $color-name, $color-value in $--colors-map {
+    &--#{"" + $color-name} {
+      @each $name, $value in $color-value {
+        &-#{"" + $name} {
+          background-color  : $value;
+          color             : $--color-white;
+          transition: background-color 0.3s;
+          -webkit-transition: background-color 0.3s;
+          &:hover {
+            transition: background-color 0.3s;
+            -webkit-transition: background-color 0.3s;
+            background-color: darken($value, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  &--type-icon{
+
+    >i{
+      display: block;
+      width: calc(1vmin * 13 / 9.45);
+      height: calc(1vmin * 2 / 9.45);
+      position: relative;
+      cursor: pointer;
+
+      &::before,
+      &::after{
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-radius: calc(1vmin * 10 / 9.45);
+        position:absolute;
+        top: 0;
+        left: 0;
+        background-color: #999;
+      }
+    }
+    &-close{
+
+      >i{
+        &:before{
+          transform: rotate(45deg);
+        }
+        &:after{
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    &-plus{
+
+      >i{
+        &:after{
+          transform: rotate(90deg);
+        }
+      }
+    }
+    &-minus{
+
+      >i{
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
+  &--type-arrow{
+    width: calc(1vmin * 35 / 9.45);
+    height: calc(1vmin * 35 / 9.45);
+
+    >i{
+      width: calc(1vmin * 8 / 9.45);
+      height: calc(1vmin * 8 / 9.45);
+      border-top: 2px solid #222;
+      border-right: 2px solid #222;
+      transform: rotate(135deg) translateY(2px);
+      transition: all .3s ease;
+    }
+    &-active{
+
+      >i{
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

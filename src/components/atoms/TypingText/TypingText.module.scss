@@ -1,0 +1,33 @@
+.typing__container{
+  font-weight: 400;
+  font-size: 2.5vh;
+  line-height: 1.5;
+  display: inline;
+  padding: 20px;
+  @media (min-width: 768px) {
+    font-weight: 700;
+    font-size: 5vh;
+    padding: 40px;
+  }
+  .typing__line:hover {
+
+    position: relative;
+    right: 0px;
+    display: inline-block;
+
+    animation: shake 1s ease infinite;
+    animation-delay: .2s;
+
+    @keyframes shake {
+      100% {
+        right: 0px;
+      }
+      50% {
+        right: 10px;
+      }
+      0% {
+        right: 0px;
+      }
+    }
+  }
+}

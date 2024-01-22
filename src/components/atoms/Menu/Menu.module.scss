@@ -1,0 +1,31 @@
+@use "sass:map";
+@import 'styles/DefaultValueVariable.scss';
+
+.menu {
+  height: 40px;
+  cursor: pointer;
+
+  @each $color-name, $color-values in $--colors-map {
+    &-#{"" + $color-name}.menu-active {
+      color: map.get($color-values, "deep-dark");
+      transition: color 1s;
+    }
+
+    color: map.get($color-values, "medium-dark");
+    transition: color 1s;
+  }
+  &:hover {
+    .menu__selectionbar {
+      width: 100%;
+      transition: width 1s;
+    }
+  }
+
+  &__selectionbar {
+    border-bottom: 2px solid white;
+    width: 0px;
+    &-active {
+      width: 100%;
+    }
+  }
+}
