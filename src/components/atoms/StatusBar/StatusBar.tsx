@@ -16,6 +16,11 @@ const StatusBar = ({rangeValue, parent}: StatusBarProps) => {
     const redPercentage = Math.max(100 - greenPercentage, 0);
     document.documentElement.style.setProperty(`--${parent.toLowerCase()}-gradient-start`, `${greenPercentage}%`);
     document.documentElement.style.setProperty(`--${parent.toLowerCase()}-gradient-end`, `${redPercentage}%`);
+
+    return () => {
+      document.documentElement.style.removeProperty(`--${parent.toLowerCase()}-gradient-start`);
+      document.documentElement.style.removeProperty(`--${parent.toLowerCase()}-gradient-end`);
+    };
   }, [rangeValue, parent]);
 
   return (

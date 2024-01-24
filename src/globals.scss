@@ -36,3 +36,24 @@
     width: 3px;
   }
 }
+
+input{
+  -webkit-appearance:none;
+}
+
+input::placeholder{
+  font-style: normal !important;
+}
+
+img {
+  cursor: pointer;
+}
+
+textarea{
+  resize:none
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 0;
+}
+

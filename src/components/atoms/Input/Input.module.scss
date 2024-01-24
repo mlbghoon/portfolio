@@ -1,0 +1,16 @@
+.input {
+  border       : 1px solid #5B71AF;
+  border-radius: 35px;
+
+  height : 35px;
+  padding: 8px 10px;
+
+  &--readOnly {
+    background-color: #ddd;
+  }
+  &--transparent {
+    background-color: transparent !important;
+    border: 0;
+    cursor: pointer;
+  }
+}

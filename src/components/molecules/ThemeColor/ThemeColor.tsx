@@ -1,11 +1,12 @@
 import styles from './ThemeColor.module.scss';
 import { Button } from 'components/atoms';
-import { useAppDispatch } from 'reduxStore/Hook';
+import { useAppDispatch, useAppSelector } from 'reduxStore/Hook';
 import { setThemeColor } from 'reduxStore/themeSlice';
 
 
 const ThemeColor = () => {
   const dispatch = useAppDispatch();
+  const themeColor = useAppSelector((state) => state.themeReducer.themeColor);
   const HeaderThemeList = [
     {
       id    : 1,
@@ -27,8 +28,8 @@ const ThemeColor = () => {
   return (
     <div className={styles.theme}>
       {HeaderThemeList.map((theme, index) =>
-        <div className={styles[`theme--${theme.color}`]} key={index}>
-          <button value={''} onClick={() => dispatch(setThemeColor(theme.color))} key={theme.id} />
+        <div className={`${styles[`theme--${theme.color}`]} ` } key={index}>
+          <button className={`${styles.theme__button} ${themeColor === theme.color ? styles['theme__button-selected'] : ''}`} value={''} onClick={() => dispatch(setThemeColor(theme.color))} key={theme.id} />
         </div>
       )}
     </div>

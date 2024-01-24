@@ -6,20 +6,25 @@
   padding: 0;
   width: 100vw;
   height: 100vh;
+  background-color: black;
 
-  @each $color-name, $color-values in $--backcolors-map {
-    &-#{"" + $color-name} {
-      .frame__header {
-        background: map.get($color-values, "default");
-        transition: background-color 1s;
-        -webkit-transition: background-color 1s;
-        .menu__overlay {
-          background: map.get($color-values, "dim");
+  // @each $color-name, $color-values in $--backcolors-map {
+  //   &-#{"" + $color-name} {
+  //     background: map.get($color-values, "default");
+  //     .frame__header {
+  //       // background: map.get($color-values, "dim");
+  //       // .menu__overlay {
+  //       //   background: map.get($color-values, "default");
 
-        }
-      }
-    }
-  }
+  //       //   transition: background-color 1s;
+  //       //   -webkit-transition: background-color 1s;
+  //       // }
+  //     }
+  //   }
+  // }
+
+  transition: background-color 1s;
+  -webkit-transition: background-color 1s;
   // @media (min-width: 768px) {
   //   display: block;
   // }
@@ -70,7 +75,15 @@
   &__theme-control {
     position : relative;
     top      : 0px;
+    z-index  : 2;
     transform: translate(20px, 20px);
+  }
+  &__language-control{
+    position : absolute;
+    top      : 0px;
+    right    : 0px;
+    z-index  : 2;
+    transform: translate(-20px, 20px);
   }
   &__menu {
     justify-content: flex-end;

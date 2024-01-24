@@ -14,16 +14,16 @@
     width: calc(1vmin * 100 / 9.45);
   }
 
-  @each $color-name, $color-values in $--backcolors-map {
-    &-#{"" + $color-name} {
-      background-color: map.get($color-values, "dim");
-      .section__title {
-        &__text{
-          border-color: map.get($color-values, "medium");
-        }
-      }
-    }
-  }
+  // @each $color-name, $color-values in $--backcolors-map {
+  //   &-#{"" + $color-name} {
+  //     background-color: map.get($color-values, "dim");
+  //     .section__title {
+  //       &__text{
+  //         border-color: map.get($color-values, "medium");
+  //       }
+  //     }
+  //   }
+  // }
 
   &:first-child {
     transition: background-color 2s ease-in;

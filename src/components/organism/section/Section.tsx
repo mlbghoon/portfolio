@@ -1,5 +1,5 @@
 import { SectionTitle } from 'components/molecules';
-import { MouseEventHandler, MouseEvent as ReactMouseEvent } from 'react';
+import { MouseEventHandler, MouseEvent as ReactMouseEvent, useEffect } from 'react';
 import Styles from './Section.module.scss';
 
 type SectionProps = {
@@ -55,6 +55,12 @@ const Section = ({children, title}: SectionProps) => {
     }
     document.documentElement.style.setProperty(`--follower-location`, `translate(${x}px, ${y}px) rotate(${angle}deg)`);
   }
+  useEffect(() => {
+
+    return () => {
+      document.documentElement.style.removeProperty(`--follower-location`);
+    };
+  })
   return (
     <>
       <section  className={Styles.section} onClick={handleChildClick} onMouseMove={onMouseMove}>

@@ -1,16 +1,29 @@
+@import '../../../styles/DefaultValueVariable.scss';
+
 .typing__container{
   font-weight: 400;
-  font-size: 2.5vh;
+  font-size: calc($--font-L / 5 * 3);
   line-height: 1.5;
-  display: inline;
   padding: 20px;
-  @media (min-width: 768px) {
-    font-weight: 700;
-    font-size: 5vh;
-    padding: 40px;
-  }
-  .typing__line:hover {
+  height: 100%;
+  width: 100%;
+  display: block;
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-weight: 600;
+    font-size: calc($--font-L / 5 * 4);
+    padding: 30px;
+    width: 70%;
+  }
+
+  @media (min-width: 1025px) {
+    font-weight: 700;
+    font-size: $--font-L;
+    padding: 40px;
+    width: 50%;
+  }
+
+  .typing__line:hover {
     position: relative;
     right: 0px;
     display: inline-block;
@@ -28,6 +41,20 @@
       0% {
         right: 0px;
       }
+    }
+  }
+  .typing__next{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    width: 0px;
+    clip-path: polygon(0 100%, 0 0, 100% 50%);
+    background-color: white;
+    height: 20px;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    &-active {
+      width: 20px;
     }
   }
 }

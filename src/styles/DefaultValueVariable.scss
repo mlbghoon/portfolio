@@ -5,24 +5,22 @@
 $--color-gray                     : hsl(0, 0%, 45%);
 $--color-gray-light               : lighten($--color-gray, 10%);
 $--color-gray-dark                : darken($--color-gray, 10%);
-$--color-gray-medium              : hsla(0, 0%, 45%, 0.7);
+$--color-gray-medium              : hsl(0, 0%, 72%);
 $--color-gray-medium-light        : lighten($--color-gray-medium, 10%);
 $--color-gray-medium-dark         : darken($--color-gray-medium, 10%);
 $--color-gray-deep                : hsla(0, 0%, 20%);
 $--color-gray-deep-light          : lighten($--color-gray-deep, 10%);
 $--color-gray-deep-dark           : darken($--color-gray-deep, 10%);
 
-
 $--color-red                      : hsl(10, 100%, 55%);
 $--color-red-light                : lighten($--color-red, 10%);
 $--color-red-dark                 : darken($--color-red, 10%);
-$--color-red-medium               : hsl(0, 100%, 55%, 0.6);
+$--color-red-medium               : hsl(0, 100%, 78%);
 $--color-red-medium-light         : lighten($--color-red-medium, 10%);
 $--color-red-medium-dark          : darken($--color-red-medium, 10%);
 $--color-red-deep                 : hsl(20, 100%, 25%);
 $--color-red-deep-light           : lighten($--color-red-deep, 10%);
 $--color-red-deep-dark            : darken($--color-red-deep, 10%);
-
 
 $--color-blue                     : hsl(210, 100%, 55%);
 $--color-blue-light               : lighten($--color-blue, 10%);
@@ -34,21 +32,20 @@ $--color-blue-deep                : hsl(230, 100%, 25%);
 $--color-blue-deep-light          : lighten($--color-blue-deep, 10%);
 $--color-blue-deep-dark           : darken($--color-blue-deep, 10%);
 
-$--color-green                    : hsl(120, 100%, 45%);
+$--color-green                    : hsl(120, 70%, 43%);
 $--color-green-light              : lighten($--color-green, 10%);
 $--color-green-dark               : darken($--color-green, 10%);
-$--color-green-medium             : hsla(100, 100%, 45%, 0.5);
+$--color-green-medium             : hsl(100, 75%, 57%);
 $--color-green-medium-light       : lighten($--color-green-medium, 10%);
 $--color-green-medium-dark        : darken($--color-green-medium, 10%);
 $--color-green-deep               : hsl(130, 46%, 20%);
 $--color-green-deep-light         : lighten($--color-green-deep, 10%);
 $--color-green-deep-dark          : darken($--color-green-deep, 10%);
 
-$--background-red                 : rgba(255, 206, 206, 0.9);
-$--background-blue                : rgba(206, 226, 255, 0.9);
-$--background-green               : rgba(206, 255, 206, 0.9);
-$--background-gray                : rgba(46, 46, 46, 0.9);
-
+$--background-red                 : hsla(356, 15%, 18%, 0.5);
+$--background-blue                : hsla(207, 16%, 22%, 0.5);
+$--background-green               : hsla(87, 20%, 20%, 0.5);
+$--background-gray                : hsla(0, 0%, 15%, 0.5);
 
 $--color-gradient-gray:
   linear-gradient(
@@ -127,7 +124,7 @@ $back-red-map: (
   gradient: $--color-gradient-red,
   dim     : $--background-red,
   medium  : lighten($--color-red-medium-light, 10%),
-  default : lighten(hsl(0, 100%, 55%), 30%),
+  default :  $--background-red,
   shadow  : $--shadow-red,
 );
 
@@ -136,21 +133,21 @@ $back-blue-map: (
   gradient: $--color-gradient-blue,
   dim     : $--background-blue,
   medium  : lighten($--color-blue-medium-light, 10%),
-  default : lighten(hsl(190, 100%, 55%), 30%),
+  default : $--background-blue,
   shadow  : $--shadow-blue,
 );
 $back-green-map: (
   gradient: $--color-gradient-green,
   dim     : $--background-green,
   medium  : lighten($--color-green-medium-light, 10%),
-  default : lighten(hsla(100, 100%, 45%), 30%),
+  default : $--background-green,
   shadow  : $--shadow-green,
 );
 $back-gray-map: (
   gradient: $--color-gradient-gray,
   dim     : $--background-gray,
   medium  : lighten($--color-gray-medium-light, 10%),
-  default : lighten(hsla(0, 0%, 45%), 30%),
+  default : $--background-gray,
   shadow  : $--shadow-gray,
 );
 
@@ -216,11 +213,6 @@ $--colors-map: (
   gray: $gray-map,
 );
 
-
-
-
-
-
 $--color-black                    : #222222;
 $--color-white                    : #FFFFFF;
 $--color-white-opacity90          : rgba(255, 255, 255, .9);
@@ -267,13 +259,14 @@ $--scroll-red               : #B67E7E;
 $--scroll-blue              : #7E84B6;
 $--scroll-green             : #7EB6A5;
 
-// Font size
-$--font-regular             : 16px;
-$--font-small               : 14px;
-
 // Font weight
 $--weight-bold              : 700;
 $--weight-semi-bold         : 500;
 $--weight-regular           : 400;
 
+// Font size
+$--font-XL: 60px;
+$--font-L : 40px;
+$--font-M : 25px;
+$--font-S : 15px;
 

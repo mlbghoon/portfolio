@@ -15,7 +15,6 @@ $follower-location  : var(--follower-location);
   @each $color-name, $color-values in $--colors-map {
     &-#{"" + $color-name} {
       background-color:  map.get($color-values, "deep");
-
     }
   }
 

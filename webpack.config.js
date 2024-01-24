@@ -34,18 +34,6 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.svg$/,
-      //   use: [
-      //     'url-loader',
-      //     {
-      //       loader: 'svg-inline-loader',
-      //       options: {
-      //         removeSVGTagAttrs: false,
-      //       },
-      //     },
-      //   ],
-      // },
     ],
   },
   resolve: {
@@ -65,8 +53,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    // static: path.join(__dirname, 'public'), // Specify the directory to serve static files
-    port: 3000, // Specify the port to run the dev server on
-    hot: true, // Enable Hot Module Replacement
+    port: 3001,
+    hot: true,
   },
 };

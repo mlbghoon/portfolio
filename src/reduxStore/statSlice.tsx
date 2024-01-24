@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from './store';
-
 
 interface statState {
   level: number;
@@ -31,8 +29,5 @@ export const stateSlice = createSlice({
 })
 
 export const { addTotalDamage } = stateSlice.actions
-
-export const level = (state: RootState) => state.statReducer.level;
-export const totalDamage = (state: RootState) => state.statReducer.totalDamage;
 
 export default stateSlice.reducer

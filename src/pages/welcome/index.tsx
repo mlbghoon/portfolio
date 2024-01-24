@@ -7,9 +7,6 @@ import { Button, IconImage} from 'components/atoms';
 import { Infos } from 'components/molecules';
 import { ThemeColor } from 'components/molecules';
 import Styles from './welcome.module.scss'
-// import { DateLib } from 'common/script';
-// import { useMemo } from 'react';
-// import { setCurrnetPage } from 'reduxStore/pageSlice';
 
 function WelcomePage() {
   const navigate = useNavigate();

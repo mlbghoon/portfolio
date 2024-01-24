@@ -1,11 +1,9 @@
-// import AtomicPage from './atomic';
-// import LoginPage from './login';
 import WelcomePage from './welcome';
-import AboutPage from './about';
+import AboutPage   from './about';
 import PageOnePage from './pageOne';
-//import { ButtonTest } from 'container/TestPage/ButtonTest';
+import LoadingPage from './loading';
+import StartPage   from './start';
 
 export {
-  AboutPage,
-  WelcomePage, PageOnePage //, LoginPage //, ButtonTest
+  WelcomePage, AboutPage, PageOnePage, LoadingPage, StartPage
 }

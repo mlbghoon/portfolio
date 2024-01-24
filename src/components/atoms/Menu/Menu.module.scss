@@ -7,11 +7,12 @@
 
   @each $color-name, $color-values in $--colors-map {
     &-#{"" + $color-name}.menu-active {
-      color: map.get($color-values, "deep-dark");
+      color: map.get($color-values, "medium-light");
       transition: color 1s;
     }
-
-    color: map.get($color-values, "medium-dark");
+    &-#{"" + $color-name} {
+      color: map.get($color-values, "deep-light");
+    }
     transition: color 1s;
   }
   &:hover {
@@ -27,5 +28,6 @@
     &-active {
       width: 100%;
     }
+    transition: width 1s;
   }
 }
