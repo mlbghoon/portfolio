@@ -1,4 +1,4 @@
-import { useEffect, useState, KeyboardEvent, useCallback, ChangeEvent, useRef  } from 'react';
+import { useEffect, useState, useCallback, ChangeEvent, useRef  } from 'react';
 import { useAppSelector } from 'reduxStore/Hook';
 import { DelayView, StatusBar, Spans, Menu } from 'components/atoms'
 
@@ -19,8 +19,9 @@ const Enterance = ({language}:EnteranceProps) => {
   const [ title     , setTitle     ]   = useState(<></>);
   const navigate = useNavigate();
 
+
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent<Document>) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowUp') {
         setChoice('Start');
       } else if (event.key === 'ArrowDown') {
@@ -29,11 +30,12 @@ const Enterance = ({language}:EnteranceProps) => {
         pageChange();
       }
     };
+
+    document.addEventListener('keyup', handleKeyDown);
     makeTitle();
-    document.addEventListener('keyup', (e:any)=>handleKeyDown(e));
 
     return () => {
-      document.removeEventListener('keyup', (e:any)=>handleKeyDown(e));
+      document.removeEventListener('keyup', handleKeyDown);
     };
   }, []);
 
