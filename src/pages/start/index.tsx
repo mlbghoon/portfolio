@@ -1,35 +1,128 @@
-import { useEffect, useMemo, useState       } from 'react';
+import { useEffect, useMemo, useRef, useState       } from 'react';
 import { useAppDispatch, useAppSelector } from 'reduxStore/Hook';
-import { DelayView, Input, TypingText          } from 'components/atoms'
+import { Button, DelayView, Input, TypingText          } from 'components/atoms'
 import Styles from './start.module.scss';
 import { DateLib, StrLib } from 'utils';
 import { characterState, setName } from 'reduxStore/characterSlice';
 
 const diceFace = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-const Dice = () => {
+
+
+
+type diceProp = {
+  clicked: boolean;
+  facing : number | null
+}
+const Dice = ({clicked, facing} : diceProp) => {
   const themeColor = useAppSelector((state) => state.themeReducer.themeColor);
-  const [ clicked, setClicked ] = useState(false);
-  const [ facing , setFacing  ] = useState<number | null>(null);
-  const roll = () => {
-    setClicked(true)
-
-    setTimeout(function () {
-      setClicked(false)
-
-      setFacing(Math.floor((Math.random() * 20)) + 1)
-    }, 3000)
-  }
 
   return (
-    <div className={Styles.content} onClick={roll}>
-      <div className={`${Styles.die} ${clicked ? Styles.rolling : ''} ${Styles['die-' + themeColor]}`} data-face={facing}>
-        {diceFace.map((face, key) => {
-          return (
-            <figure key={key} className={`${Styles.face} ${Styles['face-' + face]} ${facing === face ? Styles.active : ''}`}></figure>
-          )
-        })}
-      </div>
+    <div className={`${Styles.die} ${clicked ? Styles.rolling : ''} ${Styles['die-' + themeColor]}`} data-face={facing}>
+      {diceFace.map((face, key) => {
+        return (
+          <figure key={key} className={`${Styles.face} ${Styles['face-' + face]} ${facing === face ? Styles.active : ''}`}></figure>
+        )
+      })}
     </div>
+  )
+}
+const Dices = () => {
+  const [ clickedOne  , setClickedOne   ] = useState(false);
+  const [ clickedTwo  , setClickedTwo   ] = useState(false);
+  const [ clickedThree, setClickedThree ] = useState(false);
+  const [ facingOne   , setFacingOne   ] = useState<number | null>(null);
+  const [ facingTwo   , setFacingTwo   ] = useState<number | null>(null);
+  const [ facingThree , setFacingThree ] = useState<number | null>(null);
+
+  const roll = (index: number) => {
+    switch (index) {
+      case 0:
+        setClickedOne(true)
+
+        setTimeout(function () {
+          setClickedOne(false)
+          setFacingOne(Math.floor((Math.random() * 20)) + 1)
+        }, 3000)
+
+        break;
+      case 1:
+        setClickedTwo(true)
+
+        setTimeout(function () {
+          setClickedTwo(false)
+          setFacingTwo(Math.floor((Math.random() * 20)) + 1)
+        }, 3000)
+        break;
+      default:
+        setClickedThree(true)
+
+        setTimeout(function () {
+          setClickedThree(false)
+          setFacingThree(Math.floor((Math.random() * 20)) + 1)
+        }, 3000)
+        break;
+    }
+  }
+  const rollAll = () => {
+    setClickedOne(true)
+    setClickedTwo(true)
+    setClickedThree(true)
+
+    setTimeout(function () {
+      setClickedOne(false)
+      setClickedTwo(false)
+      setClickedThree(false)
+
+      setFacingOne(Math.floor((Math.random() * 20)) + 1)
+      setFacingTwo(Math.floor((Math.random() * 20)) + 1)
+      setFacingThree(Math.floor((Math.random() * 20)) + 1)
+    }, 3000)
+  }
+  const confirmStat = () => {
+
+  }
+  return (
+    <>
+      <div className={Styles['dices-wrapper']}>
+        <div className={Styles['dice-wrapper']}>
+          <div className={Styles['dice-content']} onClick={() => roll(0)}>
+            <Dice 
+              clicked={clickedOne} 
+              facing={facingOne}            
+            />
+          </div>
+          <div className={Styles['dice-label']}>공격</div>
+        </div>
+        <div className={Styles['dice-wrapper']}>
+          <div className={Styles['dice-content']} onClick={() => roll(1)}>
+            <Dice 
+              clicked={clickedTwo} 
+              facing={facingTwo}            
+            />
+          </div>
+          <div className={Styles['dice-label']}>속도</div>
+        </div>
+        <div className={Styles['dice-wrapper']}>
+          <div className={Styles['dice-content']} onClick={() => roll(2)}>
+            <Dice 
+              clicked={clickedThree} 
+              facing={facingThree}            
+            />
+          </div>
+          <div className={Styles['dice-label']}>크리티컬</div>
+        </div>
+      </div>
+      <div>
+        <Button 
+          onClickEvent={rollAll}
+          value='모두 굴리기'
+        />
+        <Button 
+          onClickEvent={confirmStat}
+          value='확정'
+        />
+      </div>
+    </>
   )
 }
 
@@ -51,9 +144,23 @@ const textArr: textType[] = [
   },
   {
     'Kor': `이름을 입력해 주세요`,
-    'Eng': `Please Enter your name.`
+    'Eng': `Please enter your name.`
+  },
+  {
+    'Kor': `이름을 입력해 주세요`,
+    'Eng': `Please enter your name.`
+  },
+  {
+    'Kor': `안녕하세요. [][]님. 다음은 캐릭터 능력치를 설정하겟습니다.`,
+    'Eng': `Hello. [][]. Next we will set character stats.`
+  },
+  {
+    'Kor': `주사위를 클릭하주세요.`,
+    'Eng': `Please click the dice.`
   },
 ]
+
+
 
 type NpcProps = {
   index: number;
@@ -133,8 +240,22 @@ const Npc = ({index, language, renderDone, user}: NpcProps) => {
               </div>
               <div className={Styles['start__npc-sqa']}>
                 <TypingText
-                  text ={textArr[3][language]}
+                  text ={textArr[5][language]}
+                  variableArr ={[user.name]}
                   finishRenderHandler={renderDone}
+                />
+              </div>
+            </>
+          )
+        case 6:
+          return (
+            <>
+              <div className={Styles['start__npc-tri']}>
+                <div></div>
+              </div>
+              <div className={Styles['start__npc-sqa']}>
+                <TypingText
+                  text ={textArr[6][language]}
                 />
               </div>
             </>
@@ -161,7 +282,7 @@ const User = ({index, renderDone, user, setUser, language}: UserProps) => {
   const [ errMsg , setErrMsg ] = useState('');
   const validate = () => {
     if (StrLib.isNull(user.name)) {
-      setErrMsg(language === 'Kor' ? '이름을 입력해주세요' : 'Please enter your name.')
+      setErrMsg(textArr[4][language])
     } else {
       renderDone()
 
@@ -230,6 +351,13 @@ const Contents = ({index, renderDone, user, setUser, language}: ContentsProps) =
             {user.name}
           </>
         )
+      case 6:
+        return (
+          <>
+            {user.name}
+            <Dices/>
+          </>
+        )
       default:
         return <></>
     }
@@ -262,7 +390,7 @@ const Conv = () => {
       npcVisible = true;
     } else if (index < 5) {
       userVisible = true;
-    } else if (index < 6) {
+    } else if (index < 7) {
       npcVisible = true;
       contentVisible = true;
     } else {
