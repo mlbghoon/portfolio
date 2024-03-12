@@ -130,11 +130,11 @@ function LoadingPage() {
   useEffect(()=> {
     const interval = setInterval(() => {
       setRange((prev) => {
-        if (prev + 5 >= 100) {
+        if (prev + 1 >= 100) {
           clearInterval(interval);
           return 100;
         } else {
-          return prev + 5;
+          return prev + 1;
         }
       });
     }, 40);

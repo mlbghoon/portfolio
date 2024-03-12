@@ -2,7 +2,6 @@ import { ChangeEvent, KeyboardEvent } from 'react'
 import Styles from './Input.module.scss';
 
 type TextfieldProps = {
-  id          : `${"ipt"}${string}`;
   name        : string;
   value       : string;
   readOnly?   : boolean;
@@ -14,7 +13,7 @@ type TextfieldProps = {
 };
 
 const Input = (props: TextfieldProps) => {
-	const {id, name, value, readOnly=false, disabled=false, placeholder="", onChange=()=>{}, onEnterPress} = props;
+	const {name, value, readOnly=false, disabled=false, placeholder="", onChange=()=>{}, onEnterPress} = props;
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		// const inputValue = event.target.value;
     onChange(name, event.target.value);
@@ -27,9 +26,8 @@ const Input = (props: TextfieldProps) => {
 
 		}
 	};
-   return (
+  return (
     <input
-      id           = {id}
       name         = {name}
       type         = {"text"}
       value        = {value}

@@ -202,7 +202,6 @@ $translateLowerY: $faceHeight*0.78 + $translateRingY;
   &__contents {
     width: 100%;
     height: 40%;
-    border: 1px green solid;
   }
 
   &__user {
@@ -227,6 +226,12 @@ $translateLowerY: $faceHeight*0.78 + $translateRingY;
       width: 100%;
       height: calc(100% - 20px);
       border: 2px white solid;
+    }
+    &-inputWrapper{
+      padding: 20px;
+      width: 100%;
+      display: flex;
+
     }
   }
 }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface characterState {
+export interface characterState {
   name     : string;
   level    : number;
   attack   : number;

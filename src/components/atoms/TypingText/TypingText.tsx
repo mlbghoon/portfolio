@@ -6,10 +6,11 @@ import Styles from './TypingText.module.scss';
 type TypingTextProps = {
   text: string;
   variableArr?: Array<string>;
+  nextBtn?: boolean;
   finishRenderHandler?: ()=>void;
 }
 
-const TypingText = ({text, variableArr, finishRenderHandler}: TypingTextProps) => {
+const TypingText = ({text, variableArr, finishRenderHandler, nextBtn=true}: TypingTextProps) => {
   const [fullText, setFullText] = useState(['']);
   const [timeoutIds, setTimeoutIds] = useState<NodeJS.Timeout[]>([]);
   const [ next , setNext ] = useState(false);
@@ -59,14 +60,19 @@ const TypingText = ({text, variableArr, finishRenderHandler}: TypingTextProps) =
     let testArr = [];
 
     for (let i = 0; i < typingArr.length; i ++) {
-      time += Math.floor(Math.random() * (50 - 40 + 1)) + 40;
+      time += Math.floor(Math.random() * (10 + 1)) + 10;
 
       let timeoutId = setTimeout(() => {
         setFullText(() => {
           if (i === typingArr.length -1 && finishRenderHandler) {
             setTimeout(() => {
-              setNext(true)
-            }, 1000);
+              if (nextBtn) {
+                setNext(true)
+
+              } else {
+                finishRenderHandler();
+              }
+            }, 500);
           }
           return typingArr[i].split('\n')
         })
@@ -82,7 +88,7 @@ const TypingText = ({text, variableArr, finishRenderHandler}: TypingTextProps) =
       {fullText.map((line, key) => {
         return <div className={Styles.typing__line}key={key}>{line}</div>
       })}
-      {finishRenderHandler &&
+      {(finishRenderHandler && nextBtn) &&
         <div className={`${Styles.typing__next} ${next ? Styles['typing__next-active'] : ''}`} onClick={() => {setNext(false); finishRenderHandler()}}></div>
       }
     </div>
