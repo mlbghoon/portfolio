@@ -13,10 +13,10 @@ type TextfieldProps = {
 };
 
 const Input = (props: TextfieldProps) => {
-	const {name, value, readOnly=false, disabled=false, placeholder="", onChange=()=>{}, onEnterPress} = props;
+	const {name, value, readOnly=false, disabled=false, placeholder="", onChange=()=>{}, onEnterPress, maxLength=2000} = props;
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		// const inputValue = event.target.value;
-    onChange(name, event.target.value);
+    onChange(name, event.target.value.substring(0, maxLength));
 	}
 	const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = event.key;

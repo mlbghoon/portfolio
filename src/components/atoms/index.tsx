@@ -9,7 +9,8 @@ import { StatOverlay } from "./StatOverlay/StatOverlay";
 import { DelayView } from "./DelayView/DelayView";
 import { Input } from "./Input/Input";
 import { Spans } from "./Spans/Spans";
+import { Dice } from "./Dice/Dice";
 import Language from './Language/Language'
 export {
-  IconImage, Button, Menu, HitOverlay, StatusBar, TypingText, Follower, StatOverlay, DelayView, Input, Spans, Language
+  IconImage, Button, Menu, HitOverlay, StatusBar, TypingText, Follower, StatOverlay, DelayView, Input, Spans, Dice, Language
 }

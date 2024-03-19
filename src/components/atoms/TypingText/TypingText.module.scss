@@ -13,14 +13,12 @@
     font-weight: 600;
     font-size: calc($--font-L / 5 * 4);
     padding: 30px;
-    width: 70%;
   }
 
   @media (min-width: 1025px) {
     font-weight: 700;
     font-size: $--font-L;
     padding: 40px;
-    width: 50%;
   }
 
   .typing__line:hover {
